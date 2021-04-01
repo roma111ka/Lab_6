@@ -108,4 +108,17 @@ public class BouncingBall implements Runnable {
         canvas.draw(ball);
         canvas.fill(ball);
     }
+    public void toMouse(double mouseX, double mouseY) {
+        if ((mouseY - y != 0) && (mouseX - x != 0)) {
+            double angle = Math.atan(Math.abs(mouseY - y) / Math.abs(mouseX - x));
+            speedX = 3 * Math.cos(angle);
+            speedY = 3 * Math.sin(angle);
+            if ((mouseY - y) < 0) {
+                speedY = -speedY;
+            }
+            if ((mouseX - x) < 0) {
+                speedX = -speedX;
+            }
+        }
+    }
 }
