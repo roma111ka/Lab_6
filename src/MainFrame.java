@@ -1,12 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
+
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
     // Константы, задающие размер окна приложения, если оно
@@ -15,6 +11,7 @@ public class MainFrame extends JFrame {
     private static final int HEIGHT = 500;
     private JMenuItem pauseMenuItem;
     private JMenuItem resumeMenuItem;
+    private JCheckBoxMenuItem xarizmaMenuItem;
     // Поле, по которому прыгают мячи
     private Field field = new Field();
     // Конструктор главного окна приложения
@@ -64,6 +61,15 @@ public class MainFrame extends JFrame {
         };
         resumeMenuItem = controlMenu.add(resumeAction);
         resumeMenuItem.setEnabled(false);
+        JMenu effectMenu = new JMenu("Харизма");
+        menuBar.add(effectMenu);
+        AbstractAction effectAction = new AbstractAction("Харизма"){
+            public void actionPerformed(ActionEvent arg0) {
+                field.xarizma = xarizmaMenuItem.isSelected();}
+        };
+        xarizmaMenuItem = new JCheckBoxMenuItem(effectAction);
+        effectMenu.add(xarizmaMenuItem);
+        xarizmaMenuItem.setEnabled(true);
 // Добавить в центр граничной компоновки поле Field
         getContentPane().add(field, BorderLayout.CENTER);
     }
